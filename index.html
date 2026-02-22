@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hospital LOS Prediction</title>
+    <!-- Link to CSS -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <h2>Hospital Length of Stay Prediction</h2>
+
+    <form action="/predict" method="post">
+        <!-- Age input -->
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" min="0" required><br>
+
+        <!-- Service dropdown -->
+        <label for="service">Service:</label>
+        <select id="service" name="service" required>
+            <option value="">--Select Service--</option>
+            <option value="ICU">ICU</option>
+            <option value="General Ward">General Ward</option>
+            <option value="Emergency">Emergency</option>
+            <option value="Surgery">Surgery</option>
+        </select><br>
+
+        <!-- Satisfaction dropdown -->
+        <label for="satisfaction">Satisfaction:</label>
+        <select id="satisfaction" name="satisfaction" required>
+            <option value="">--Select Satisfaction--</option>
+            <option value="1">1 - Very Dissatisfied</option>
+            <option value="2">2 - Dissatisfied</option>
+            <option value="3">3 - Neutral</option>
+            <option value="4">4 - Satisfied</option>
+            <option value="5">5 - Very Satisfied</option>
+        </select><br>
+
+        <!-- Submit button -->
+        <input type="submit" value="Predict">
+    </form>
+
+    <!-- Display prediction result -->
+    {% if prediction_text %}
+    <div class="prediction">{{ prediction_text }}</div>
+    {% endif %}
+</div>
+
+</body>
+</html>
